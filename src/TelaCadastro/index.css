@@ -1,0 +1,14 @@
+.tela-cadastro{
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+}
+
+.linha{
+    display: flex;
+}
+
+.endereco{
+    background-color: antiquewhite;
+}
+
