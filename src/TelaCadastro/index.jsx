@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react'
 
 import InformacoesEndereco from './InformacoesEndereco'
+import InformacoesPessoais from './InformacoesPessoais'
 
 import './index.css'
 
 
 const modeloEndereco = { Identificador: '', Numero: '', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }
 
-const TelaCadastro = ({dados, setDados}) => {
-    const [informacoesEnderecoInput, setInformacoesEnderecoInput] = useState([{...modeloEndereco}])
-    const [informacoesPessoais, setInformacoesPessoais] = useState({Nome:'', Idade:'', Endereco:''})
+const TelaCadastro = ({setTelaCadastroAtiva, indice=null, dados, setDados, telaAtiva=false}) => {
+    
+    const [informacoesEnderecoInput, setInformacoesEnderecoInput] = useState([])
+    const [informacoesPessoais, setInformacoesPessoais] = useState({})
+
 
     const adicionarEndereco = () => {
         setInformacoesEnderecoInput([...informacoesEnderecoInput, modeloEndereco])
@@ -23,28 +26,41 @@ const TelaCadastro = ({dados, setDados}) => {
         setInformacoesPessoais({...copiaInformacoesPessoais})
     }
 
-    const verObjeto = () => console.log(informacoesPessoais)
-
+    
     const salvarObjeto = () => {
-
         let copiaInformacoes = {...informacoesPessoais}
         copiaInformacoes.Endereco = [...informacoesEnderecoInput]
         let copiaDados = [...dados]
-        copiaDados.push(copiaInformacoes)
+        if (indice===null){
+            copiaDados.push(copiaInformacoes)
+        }else{
+            copiaDados[indice] = copiaInformacoes
+        }
         setDados([...copiaDados])
+        setTelaCadastroAtiva(false)
     }
 
+    useEffect(()=>{
+        if(indice===null){
+            setInformacoesEnderecoInput([{...modeloEndereco}])
+            setInformacoesPessoais({Nome:'', Idade:'', Endereco:''})
+        }else{
+            setInformacoesEnderecoInput([...dados[indice].Endereco])
+            setInformacoesPessoais({...dados[indice], Endereco:''})
+        }
+    }, [indice])
+    
     
     return (
+        telaAtiva?(
         <div className="tela-cadastro">
-            <p>dados pessoais:</p>
-            <div className="linha">
-                <p>nome:</p><input type="text" placeholder="" name='Nome' onChange={editaDadosPessoais} value={informacoesPessoais.Nome}/>
-            </div>
-            <div className="linha">
-                <p>idade:</p><input type="text" placeholder="" name='Idade' onChange={editaDadosPessoais} value={informacoesPessoais.Idade}/>
-            </div>
-
+            <div className='dados-pessoais'>
+                <p>dados pessoais:</p>
+                <InformacoesPessoais 
+                    informacoesPessoais={informacoesPessoais}
+                    editaDadosPessoais={editaDadosPessoais}/>
+                </div>
+            
             <div className='endereco'>
                 <p>informações de endereço:</p>
                 <InformacoesEndereco 
@@ -53,11 +69,12 @@ const TelaCadastro = ({dados, setDados}) => {
                 />
                 <button onClick={adicionarEndereco}>adicionar endereço</button>
                 <button onClick={salvarObjeto}>Salvar</button>
-
+                
             </div>
 
 
         </div>
+        ):(<></>)
     )
 }
 

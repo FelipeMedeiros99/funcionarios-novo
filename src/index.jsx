@@ -12,13 +12,23 @@ import './styles/index.css'
 const App = () =>{
 
   const [dados, setDados] = useState(data)
-  console.log(dados)
+  const [telaCadastroAtiva, setTelaCadastroAtiva] = useState(false)
+  const [indice, setIndice] = useState(null)
+
 
   return (
     <>
-      <Tabela dados={dados}/> 
-      {/* <button onClick={cadastrar}>Adcionar</button> */}
-      <TelaCadastro dados={dados} setDados={setDados}/>
+      <Tabela dados={dados} 
+              setDados={setDados} 
+              setTelaCadastroAtiva={setTelaCadastroAtiva}
+              setIndice={setIndice}/> 
+      <TelaCadastro indice={indice} 
+                    dados={dados} 
+                    setDados={setDados} 
+                    telaAtiva={telaCadastroAtiva}
+                    setTelaCadastroAtiva={setTelaCadastroAtiva}
+                    />
+
     </>
   )
 }
