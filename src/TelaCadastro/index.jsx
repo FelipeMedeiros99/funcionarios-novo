@@ -9,7 +9,7 @@ import './index.css'
 const modeloEndereco = { Identificador: '', Numero: '', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }
 
 const TelaCadastro = ({setTelaCadastroAtiva, indice=null, dados, setDados, telaAtiva=false}) => {
-    
+
     const [informacoesEnderecoInput, setInformacoesEnderecoInput] = useState([])
     const [informacoesPessoais, setInformacoesPessoais] = useState({})
 
@@ -38,17 +38,26 @@ const TelaCadastro = ({setTelaCadastroAtiva, indice=null, dados, setDados, telaA
         }
         setDados([...copiaDados])
         setTelaCadastroAtiva(false)
+        
     }
 
+    const fecharTela = () =>{
+        setTelaCadastroAtiva(false)
+    }
+
+
+
     useEffect(()=>{
-        if(indice===null){
+        console.log('useEffect ativado')
+        if(indiceAtual===null){
+            console.log('novo indice igual null')
             setInformacoesEnderecoInput([{...modeloEndereco}])
             setInformacoesPessoais({Nome:'', Idade:'', Endereco:''})
         }else{
             setInformacoesEnderecoInput([...dados[indice].Endereco])
             setInformacoesPessoais({...dados[indice], Endereco:''})
         }
-    }, [indice])
+    },[])
     
     
     return (
@@ -69,6 +78,7 @@ const TelaCadastro = ({setTelaCadastroAtiva, indice=null, dados, setDados, telaA
                 />
                 <button onClick={adicionarEndereco}>adicionar endereço</button>
                 <button onClick={salvarObjeto}>Salvar</button>
+                <button onClick={fecharTela}>cancelar</button>
                 
             </div>
 

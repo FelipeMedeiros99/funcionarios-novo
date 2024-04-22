@@ -16,6 +16,11 @@ const Tabela = ({dados, setDados, setTelaCadastroAtiva, setIndice}) => {
         setIndice(index)
         setTelaCadastroAtiva(true)
     }
+    
+    const cadastrar = () =>{
+        setIndice(null)
+        setTelaCadastroAtiva(true)
+    }
 
 
     return (
@@ -34,7 +39,8 @@ const Tabela = ({dados, setDados, setTelaCadastroAtiva, setIndice}) => {
                     </span>
                 </div>
             ))}
-            
+
+            <button onClick={cadastrar}>Cadastrar</button>            
         </div>
     )
 }
