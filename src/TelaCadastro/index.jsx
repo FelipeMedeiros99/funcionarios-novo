@@ -20,10 +20,6 @@ const TelaCadastro = (props) => {
         informacoesPessoais,
         setInformacoesPessoais } = props
 
-    console.log(informacoesEnderecoInput)
-    console.log(informacoesPessoais)
-    console.log(indice)
-
     const adicionarEndereco = () => {
         setInformacoesEnderecoInput([...informacoesEnderecoInput, modeloEndereco])
     }
