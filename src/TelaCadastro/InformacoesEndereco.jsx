@@ -14,7 +14,8 @@ const InformacoesEndereco = ({ informacoesEnderecoInput, setInformacoesEnderecoI
     return (
         <div className="endereco">
             {informacoesEnderecoInput.map((endereco, index) => (
-                Object.keys(endereco).map((chave) =>(
+                <>
+                {Object.keys(endereco).map((chave) =>(
                     <div className="linha">
                         <p>{chave}:</p>
                         <input type="text" 
@@ -27,10 +28,12 @@ const InformacoesEndereco = ({ informacoesEnderecoInput, setInformacoesEnderecoI
                                     let copiaEndereco = [...informacoesEnderecoInput]
                                     copiaEndereco[index][nome] = valor
                                     setInformacoesEnderecoInput([...copiaEndereco]) 
-                                }}
+                                }}  
                                 />
                     </div>
-                ))
+                ))}
+                <hr />
+                </>
             ))}
         </div>
     )

@@ -10,91 +10,96 @@ const modeloEndereco = { Identificador: '', Numero: '', Logradouro: '', Compleme
 
 const TelaCadastro = (props) => {
 
-    const {setTelaCadastroAtiva, 
-           indice, 
-           dados, 
-           setDados, 
-           telaAtiva, 
-           informacoesEnderecoInput, 
-           setInformacoesEnderecoInput, 
-           informacoesPessoais, 
-           setInformacoesPessoais} = props
+    const { setTelaCadastroAtiva,
+        indice,
+        dados,
+        setDados,
+        telaAtiva,
+        informacoesEnderecoInput,
+        setInformacoesEnderecoInput,
+        informacoesPessoais,
+        setInformacoesPessoais } = props
 
-        console.log(informacoesEnderecoInput)
-        console.log(informacoesPessoais)
+    console.log(informacoesEnderecoInput)
+    console.log(informacoesPessoais)
     console.log(indice)
-    
+
     const adicionarEndereco = () => {
         setInformacoesEnderecoInput([...informacoesEnderecoInput, modeloEndereco])
     }
 
-    const editaDadosPessoais = (elemento) =>{
+    const editaDadosPessoais = (elemento) => {
         let nome = elemento.target.name
         let valor = elemento.target.value
-        let copiaInformacoesPessoais = {...informacoesPessoais}
+        let copiaInformacoesPessoais = { ...informacoesPessoais }
         copiaInformacoesPessoais[nome] = valor
-        setInformacoesPessoais({...copiaInformacoesPessoais})
+        setInformacoesPessoais({ ...copiaInformacoesPessoais })
     }
 
-    
+
     const salvarObjeto = () => {
-        let copiaInformacoes = {...informacoesPessoais}
+        let copiaInformacoes = { ...informacoesPessoais }
         copiaInformacoes.Endereco = [...informacoesEnderecoInput]
         let copiaDados = [...dados]
-        if (indice===null){
+        if (indice === null) {
             copiaDados.push(copiaInformacoes)
-        }else{
+        } else {
             copiaDados[indice] = copiaInformacoes
         }
         setDados([...copiaDados])
         setTelaCadastroAtiva(false)
-        
+
     }
 
-    const fecharTela = () =>{
+    const fecharTela = () => {
         setTelaCadastroAtiva(false)
     }
 
 
 
-    useEffect(()=>{
-        if(indice===null){
+    useEffect(() => {
+        if (indice === null) {
             console.log('estou aqui')
-            setInformacoesEnderecoInput([{...modeloEndereco}])
-            setInformacoesPessoais({Nome:'', Idade:'', Endereco:''})
-        }else{
+            setInformacoesEnderecoInput([{ ...modeloEndereco }])
+            setInformacoesPessoais({ Nome: '', Idade: '', Endereco: '' })
+        } else {
             console.log('fui renderizado')
             setInformacoesEnderecoInput([...dados[indice].Endereco])
-            setInformacoesPessoais({...dados[indice], Endereco:''})
+            setInformacoesPessoais({ ...dados[indice], Endereco: '' })
         }
-    },[indice])
-    
-    
+    }, [indice])
+
+
     return (
-        telaAtiva?(
-        <div className="tela-cadastro">
-            <div className='dados-pessoais'>
-                <p>dados pessoais:</p>
-                <InformacoesPessoais 
-                    informacoesPessoais={informacoesPessoais}
-                    editaDadosPessoais={editaDadosPessoais}/>
+        telaAtiva ? (
+            <div className="container-tela-cadastro">
+
+                <div className="tela-cadastro">
+                    <div className='dados-pessoais'>
+                        <h2>DADOS</h2>
+                        <InformacoesPessoais
+                            informacoesPessoais={informacoesPessoais}
+                            editaDadosPessoais={editaDadosPessoais} />
+                    </div>
+
+                    <div className='endereco'>
+                        <h2>ENDEREÇO</h2>
+                        <InformacoesEndereco
+                            informacoesEnderecoInput={informacoesEnderecoInput}
+                            setInformacoesEnderecoInput={setInformacoesEnderecoInput}
+                        />
+                        <div className="botoes">
+                            <button onClick={adicionarEndereco}>Adicionar</button>
+                            <button onClick={salvarObjeto}>Salvar</button>
+                            <button onClick={fecharTela}>cancelar</button>
+                        </div>
+
+                    </div>
                 </div>
-            
-            <div className='endereco'>
-                <p>informações de endereço:</p>
-                <InformacoesEndereco 
-                    informacoesEnderecoInput={informacoesEnderecoInput}
-                    setInformacoesEnderecoInput={setInformacoesEnderecoInput}
-                />
-                <button onClick={adicionarEndereco}>adicionar endereço</button>
-                <button onClick={salvarObjeto}>Salvar</button>
-                <button onClick={fecharTela}>cancelar</button>
-                
+
+
             </div>
-
-
-        </div>
-        ):(<></>)
+        ) : (<></>)
     )
 }
 

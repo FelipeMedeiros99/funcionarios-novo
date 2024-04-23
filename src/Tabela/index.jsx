@@ -29,14 +29,15 @@ const Tabela = ({dados, setDados, setTelaCadastroAtiva, setIndice, setInformacoe
 
     return (
         <div className="tabela">
-            <div className="linha">
-                    <span className="nome">nome</span> 
-                    <span className="">idade</span>
+            <div className="linha topo">
+                    <span className="nome">Nome</span> 
+                    <span className="idade">Idade</span>
+                    <span className='icones'></span>
                 </div>
             {dados.map((dado, index) => (
-                <div className="linha">
+                <div className={index%2===0?'linha par':'linha impar'} >
                     <span className="nome">{dado.Nome}</span> 
-                    <span className="">{dado.Idade}</span>
+                    <span className="idade">{dado.Idade}</span>
                     <span className="icones">
                         <ion-icon name="create-outline" onClick={()=>editaElemento(index)}></ion-icon>
                         <ion-icon name="trash-outline" onClick={()=>apagarElemento(index)}></ion-icon>
@@ -44,7 +45,7 @@ const Tabela = ({dados, setDados, setTelaCadastroAtiva, setIndice, setInformacoe
                 </div>
             ))}
 
-            <button onClick={cadastrar}>Cadastrar</button>            
+            <button onClick={cadastrar}>NOVO</button>            
         </div>
     )
 }
