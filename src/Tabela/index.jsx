@@ -3,7 +3,9 @@ import TelaCadastro from '../TelaCadastro'
 import { useState } from 'react'
 
 
-const Tabela = ({dados, setDados, setTelaCadastroAtiva, setIndice}) => {
+const modeloEndereco = { Identificador: '', Numero: '', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }
+
+const Tabela = ({dados, setDados, setTelaCadastroAtiva, setIndice, setInformacoesEnderecoInput, setInformacoesPessoais}) => {
                                     
 
     const apagarElemento = (indice) =>{
@@ -18,6 +20,8 @@ const Tabela = ({dados, setDados, setTelaCadastroAtiva, setIndice}) => {
     }
     
     const cadastrar = () =>{
+        setInformacoesEnderecoInput([{...modeloEndereco}])
+        setInformacoesPessoais({Nome:'', Idade:'', Endereco:''})
         setIndice(null)
         setTelaCadastroAtiva(true)
     }

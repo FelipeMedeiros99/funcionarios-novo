@@ -14,19 +14,27 @@ const App = () =>{
   const [dados, setDados] = useState(data)
   const [telaCadastroAtiva, setTelaCadastroAtiva] = useState(false)
   const [indice, setIndice] = useState(null)
-
+  const [informacoesEnderecoInput, setInformacoesEnderecoInput] = useState([])
+  const [informacoesPessoais, setInformacoesPessoais] = useState({})
 
   return (
     <>
       <Tabela dados={dados} 
               setDados={setDados} 
               setTelaCadastroAtiva={setTelaCadastroAtiva}
-              setIndice={setIndice}/> 
+              setIndice={setIndice}
+              setInformacoesEnderecoInput={setInformacoesEnderecoInput}
+              setInformacoesPessoais={setInformacoesPessoais}/> 
+
       <TelaCadastro indice={indice} 
                     dados={dados} 
                     setDados={setDados} 
                     telaAtiva={telaCadastroAtiva}
                     setTelaCadastroAtiva={setTelaCadastroAtiva}
+                    informacoesEnderecoInput={informacoesEnderecoInput}
+                    setInformacoesEnderecoInput={setInformacoesEnderecoInput}
+                    informacoesPessoais={informacoesPessoais}
+                    setInformacoesPessoais={setInformacoesPessoais}
                     />
 
     </>

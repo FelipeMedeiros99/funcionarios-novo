@@ -8,12 +8,22 @@ import './index.css'
 
 const modeloEndereco = { Identificador: '', Numero: '', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }
 
-const TelaCadastro = ({setTelaCadastroAtiva, indice=null, dados, setDados, telaAtiva=false}) => {
+const TelaCadastro = (props) => {
 
-    const [informacoesEnderecoInput, setInformacoesEnderecoInput] = useState([])
-    const [informacoesPessoais, setInformacoesPessoais] = useState({})
+    const {setTelaCadastroAtiva, 
+           indice, 
+           dados, 
+           setDados, 
+           telaAtiva, 
+           informacoesEnderecoInput, 
+           setInformacoesEnderecoInput, 
+           informacoesPessoais, 
+           setInformacoesPessoais} = props
 
-
+        console.log(informacoesEnderecoInput)
+        console.log(informacoesPessoais)
+    console.log(indice)
+    
     const adicionarEndereco = () => {
         setInformacoesEnderecoInput([...informacoesEnderecoInput, modeloEndereco])
     }
@@ -48,16 +58,16 @@ const TelaCadastro = ({setTelaCadastroAtiva, indice=null, dados, setDados, telaA
 
 
     useEffect(()=>{
-        console.log('useEffect ativado')
-        if(indiceAtual===null){
-            console.log('novo indice igual null')
+        if(indice===null){
+            console.log('estou aqui')
             setInformacoesEnderecoInput([{...modeloEndereco}])
             setInformacoesPessoais({Nome:'', Idade:'', Endereco:''})
         }else{
+            console.log('fui renderizado')
             setInformacoesEnderecoInput([...dados[indice].Endereco])
             setInformacoesPessoais({...dados[indice], Endereco:''})
         }
-    },[])
+    },[indice])
     
     
     return (

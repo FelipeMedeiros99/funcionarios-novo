@@ -12,12 +12,12 @@
 const data = [
     {Nome:'Caio', 
     Idade: 54, 
-    Endereco: [{ Identificador: 'casa', Numero: '', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }, 
+    Endereco: [{ Identificador: 'casa', Numero: '12', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }, 
     { Identificador: 'apartamento', Numero: '', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }]},
 
     {Nome:'Jonas', 
     Idade: 19, 
-    Endereco: [{ Identificador: '', Numero: '', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }]
+    Endereco: [{ Identificador: 'fazenda', Numero: 'sn', Logradouro: 'fazenda brasil', Complemento: '', Cidade: 'São Luis', Estado: 'Ma', Bairro: 'Vila Isabel' }]
     },
     
 ]
