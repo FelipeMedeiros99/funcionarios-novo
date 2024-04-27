@@ -8,7 +8,9 @@ const EditarEndereco = (props) => {
             setComponentesDeAtivacao,
             adicionarNovoEndereco} = props
     const {indice, visibilidade, endereco} = componentesDeAtivacao
-
+    
+    console.log(informacoesEnderecoInput)
+    console.log(indice)
     
 
     const salvar = () =>{
@@ -64,7 +66,7 @@ const EditarEndereco = (props) => {
             <div className="botoes">
                 <button onClick={salvar}>Salvar</button>
                 <button onClick={cancelar}>cancelar</button>
-                <button onClick={()=>mostrar(props)}>mostrar</button>
+                <button onClick={()=>mostrar(indice)}>mostrar</button>
             </div>
         </>
         ):(<></>)

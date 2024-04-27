@@ -29,8 +29,11 @@ const TelaCadastro = (props) => {
     const [adicionarNovoEndereco, setAdicionarNovoEndereco] = useState(false)
     const [componentesDeAtivacao, setComponentesDeAtivacao] = useState({indice:null, visibilidade:false, endereco:''})
     const adicionarEndereco = () => {   
-        setInformacoesEnderecoInput([...informacoesEnderecoInput, modeloEndereco])
+        // setInformacoesEnderecoInput([...informacoesEnderecoInput, modeloEndereco])
         setAdicionarNovoEndereco(true)
+        let copia = {...componentesDeAtivacao}
+        copia.indice = null
+        setComponentesDeAtivacao({...copia})
     }
 
     const editaDadosPessoais = (elemento) => {

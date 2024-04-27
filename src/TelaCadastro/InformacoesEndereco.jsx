@@ -23,8 +23,8 @@ const InformacoesEndereco = (props) => {
     }
 
     const ativarEdicaoDeEndereco = (novoIndice, endereco) =>{
-        console.log('ativar edicao foi ativado')
         setAdicionarNovoEndereco(false)
+
         setComponentesDeAtivacao({indice:novoIndice, visibilidade:true, endereco:endereco})
     }
 
