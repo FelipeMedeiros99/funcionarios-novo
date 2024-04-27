@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import InformacoesEndereco from './InformacoesEndereco'
 import InformacoesPessoais from './InformacoesPessoais'
+import EditarEndereco from './EditarEndereco'
 
 import './index.css'
 
@@ -10,18 +11,26 @@ const modeloEndereco = { Identificador: '', Numero: '', Logradouro: '', Compleme
 
 const TelaCadastro = (props) => {
 
-    const { setTelaCadastroAtiva,
-        indice,
-        dados,
-        setDados,
-        telaAtiva,
-        informacoesEnderecoInput,
-        setInformacoesEnderecoInput,
-        informacoesPessoais,
-        setInformacoesPessoais } = props
+    const { 
+            informacoesPessoais,
+            setInformacoesPessoais,
 
-    const adicionarEndereco = () => {
+            informacoesEnderecoInput,
+            setInformacoesEnderecoInput,
+            
+            setTelaCadastroAtiva,
+            indice,
+            dados,
+            setDados,
+            telaAtiva,
+        } = props
+
+
+    const [adicionarNovoEndereco, setAdicionarNovoEndereco] = useState(false)
+    const [componentesDeAtivacao, setComponentesDeAtivacao] = useState({indice:null, visibilidade:false, endereco:''})
+    const adicionarEndereco = () => {   
         setInformacoesEnderecoInput([...informacoesEnderecoInput, modeloEndereco])
+        setAdicionarNovoEndereco(true)
     }
 
     const editaDadosPessoais = (elemento) => {
@@ -44,7 +53,6 @@ const TelaCadastro = (props) => {
         }
         setDados([...copiaDados])
         setTelaCadastroAtiva(false)
-
     }
 
     const fecharTela = () => {
@@ -55,11 +63,9 @@ const TelaCadastro = (props) => {
 
     useEffect(() => {
         if (indice === null) {
-            console.log('estou aqui')
             setInformacoesEnderecoInput([{ ...modeloEndereco }])
             setInformacoesPessoais({ Nome: '', Idade: '', Endereco: '' })
         } else {
-            console.log('fui renderizado')
             setInformacoesEnderecoInput([...dados[indice].Endereco])
             setInformacoesPessoais({ ...dados[indice], Endereco: '' })
         }
@@ -69,7 +75,6 @@ const TelaCadastro = (props) => {
     return (
         telaAtiva ? (
             <div className="container-tela-cadastro">
-
                 <div className="tela-cadastro">
                     <div className='dados-pessoais'>
                         <h2>DADOS</h2>
@@ -83,12 +88,25 @@ const TelaCadastro = (props) => {
                         <InformacoesEndereco
                             informacoesEnderecoInput={informacoesEnderecoInput}
                             setInformacoesEnderecoInput={setInformacoesEnderecoInput}
+                            adicionarNovoEndereco={adicionarNovoEndereco}
+                            setAdicionarNovoEndereco={setAdicionarNovoEndereco}
+                            setComponentesDeAtivacao={setComponentesDeAtivacao}
                         />
                         <div className="botoes">
                             <button onClick={adicionarEndereco}>Adicionar</button>
                             <button onClick={salvarObjeto}>Salvar</button>
                             <button onClick={fecharTela}>cancelar</button>
                         </div>
+
+
+                        <EditarEndereco
+                            informacoesEnderecoInput={informacoesEnderecoInput}
+                            setInformacoesEnderecoInput={setInformacoesEnderecoInput}
+                            componentesDeAtivacao={componentesDeAtivacao}
+                            setComponentesDeAtivacao={setComponentesDeAtivacao}
+                            setAdicionarNovoEndereco={setAdicionarNovoEndereco}
+                            adicionarNovoEndereco={adicionarNovoEndereco}
+                        />
 
                     </div>
                 </div>

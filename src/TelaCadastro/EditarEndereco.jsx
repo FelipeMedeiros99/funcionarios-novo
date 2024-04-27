@@ -1,9 +1,45 @@
+import { useState } from "react"
+
 const EditarEndereco = (props) => {
-    const {endereco, 
-           informacoesEnderecoInput, 
-           setInformacoesEnderecoInput,
-           componentesDeAtivacao} = props
-    const {indice, visibilidade} = componentesDeAtivacao
+    const { informacoesEnderecoInput, 
+            setInformacoesEnderecoInput,
+            componentesDeAtivacao,
+            setAdicionarNovoEndereco,
+            setComponentesDeAtivacao,
+            adicionarNovoEndereco} = props
+    const {indice, visibilidade, endereco} = componentesDeAtivacao
+
+    
+
+    const salvar = () =>{
+        let copia = {...componentesDeAtivacao}
+        copia.visibilidade=false
+        setComponentesDeAtivacao({...copia})
+
+        let copiaEndereco = [...informacoesEnderecoInput]
+        setInformacoesEnderecoInput([...copiaEndereco])
+    
+    }
+
+
+    const cancelar = ()=>{
+        let copia = {...componentesDeAtivacao}
+        copia.visibilidade=false
+        setComponentesDeAtivacao({...copia})
+
+        if(adicionarNovoEndereco){
+            let copiaEndereco = [...informacoesEnderecoInput]
+            copiaEndereco.pop()
+            setInformacoesEnderecoInput([...copiaEndereco])
+        }
+
+    }
+    
+    const mostrar = (elemento) => {
+        console.log(elemento)
+        
+    }
+
 
     return (
         visibilidade?(
@@ -21,9 +57,15 @@ const EditarEndereco = (props) => {
                                     copiaEndereco[indice][nome] = valor
                                     setInformacoesEnderecoInput([...copiaEndereco]) 
                                 }}  
-                                />
+                        />
+
                 </div >
             ))}
+            <div className="botoes">
+                <button onClick={salvar}>Salvar</button>
+                <button onClick={cancelar}>cancelar</button>
+                <button onClick={()=>mostrar(props)}>mostrar</button>
+            </div>
         </>
         ):(<></>)
         )
