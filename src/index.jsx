@@ -8,34 +8,45 @@ import TelaCadastro from './TelaCadastro'
 import "./styles/reset.css"
 import './styles/index.css'
 
+const modeloEndereco = { Identificador: '', Numero: '', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }
 
 const App = () =>{
+  
+  const [dadosGerais, setDadosGerais] = useState(data)
+  const [indiceDoFuncionarioASerEditado, setIndiceDoFuncionarioASerEditado] = useState(null)
+  const [ativadorDaTelaDeCadastro, setAtivadorDaTelaDeCadastro] = useState(false)
+  const [inputsDeEndereco, setInputsDeEndereco] = useState([])
+  const [inputsInformacoesPessoais, setInputsInformacoesPessoais] = useState({})
+  // const [componentesDeAtivacao, setComponentesDeAtivacao] = useState({indiceDoFuncionarioASerEditado:null, visibilidade:false, endereco:''})  
+  
 
-  const [dados, setDados] = useState(data)
-  const [telaCadastroAtiva, setTelaCadastroAtiva] = useState(false)
-  const [indice, setIndice] = useState(null)
-  const [informacoesEnderecoInput, setInformacoesEnderecoInput] = useState([])
-  const [informacoesPessoais, setInformacoesPessoais] = useState({})
-
-  return (
+  
+  return ( 
     <>
-      <Tabela dados={dados} 
-              setDados={setDados} 
-              setTelaCadastroAtiva={setTelaCadastroAtiva}
-              setIndice={setIndice}
-              setInformacoesEnderecoInput={setInformacoesEnderecoInput}
-              setInformacoesPessoais={setInformacoesPessoais}/> 
+      <Tabela 
+        dadosGerais={dadosGerais} 
+        setDadosGerais={setDadosGerais} 
+        setIndiceDoFuncionarioASerEditado={setIndiceDoFuncionarioASerEditado}
+        setAtivadorDaTelaDeCadastro={setAtivadorDaTelaDeCadastro}
+        setInputsDeEndereco={setInputsDeEndereco}
+        setInputsInformacoesPessoais={setInputsInformacoesPessoais}
+        // setComponentesDeAtivacao={setComponentesDeAtivacao}
+        // componentesDeAtivacao={componentesDeAtivacao}
+      /> 
 
-      <TelaCadastro indice={indice} 
-                    dados={dados} 
-                    setDados={setDados} 
-                    telaAtiva={telaCadastroAtiva}
-                    setTelaCadastroAtiva={setTelaCadastroAtiva}
-                    informacoesEnderecoInput={informacoesEnderecoInput}
-                    setInformacoesEnderecoInput={setInformacoesEnderecoInput}
-                    informacoesPessoais={informacoesPessoais}
-                    setInformacoesPessoais={setInformacoesPessoais}
-                    />
+      <TelaCadastro 
+        ativadorDaTelaDeCadastro={ativadorDaTelaDeCadastro}
+        inputsInformacoesPessoais={inputsInformacoesPessoais}
+        setInputsInformacoesPessoais={setInputsInformacoesPessoais}
+        inputsDeEndereco={inputsDeEndereco}
+        setInputsDeEndereco={setInputsDeEndereco}
+        indiceDoFuncionarioASerEditado={indiceDoFuncionarioASerEditado} 
+        // dadosGerais={dadosGerais} 
+        // setDadosGerais={setDadosGerais} 
+        // setAtivadorDaTelaDeCadastro={setAtivadorDaTelaDeCadastro}
+        // componentesDeAtivacao={componentesDeAtivacao}
+        // setComponentesDeAtivacao={setComponentesDeAtivacao}
+      />
 
     </>
   )

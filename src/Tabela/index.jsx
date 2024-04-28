@@ -3,49 +3,65 @@ import TelaCadastro from '../TelaCadastro'
 import { useState } from 'react'
 
 
-const modeloEndereco = { Identificador: '', Numero: '', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }
+const Tabela = (props) => {
+    const { 
+        dadosGerais,
+        setDadosGerais, 
+        setIndiceDoFuncionarioASerEditado, 
+        setAtivadorDaTelaDeCadastro, 
+        // setInputsDeEndereco, 
+        // setInputsInformacoesPessoais,
+        // setComponentesDeAtivacao,
+        // componentesDeAtivacao
+    } = props
 
-const Tabela = ({dados, setDados, setTelaCadastroAtiva, setIndice, setInformacoesEnderecoInput, setInformacoesPessoais}) => {
-                                    
 
-    const apagarElemento = (indice) =>{
-        let copiaDados = [...dados]
-        copiaDados.splice(indice, 1)
-        setDados([...copiaDados])
+    const editarEsteFuncionario = (index) =>{
+        setIndiceDoFuncionarioASerEditado(index)
+        setAtivadorDaTelaDeCadastro(true)
     }
 
-    const editaElemento = (index) =>{
-        setIndice(index)
-        setTelaCadastroAtiva(true)
-    }
-    
-    const cadastrar = () =>{
-        setInformacoesEnderecoInput([{...modeloEndereco}])
-        setInformacoesPessoais({Nome:'', Idade:'', Endereco:''})
-        setIndice(null)
-        setTelaCadastroAtiva(true)
+
+    const apagarEsteFuncionario = (index) =>{
+        let copiaDosDados = [...dadosGerais]
+        copiaDosDados.splice(index, 1)
+        setDadosGerais([...copiaDosDados])
     }
 
+
+    const cadastrarNovoFuncionario = () =>{
+        setAtivadorDaTelaDeCadastro(true)
+        // setInputsDeEndereco([{...modeloEndereco}])
+        // setInputsInformacoesPessoais({Nome:'', Idade:'', Endereco:''})
+
+        // setIndiceDoFuncionarioASerEditado(null)
+        // setAtivadorDaTelaDeCadastro(true)
+        // let copia = {...componentesDeAtivacao}
+        // copia.visibilidade=true
+        // setComponentesDeAtivacao({...copia})
+    }
 
     return (
+
         <div className="tabela">
             <div className="linha topo">
-                    <span className="nome">Nome</span> 
-                    <span className="idade">Idade</span>
-                    <span className='icones'></span>
-                </div>
-            {dados.map((dado, index) => (
-                <div className={index%2===0?'linha par':'linha impar'} >
-                    <span className="nome">{dado.Nome}</span> 
-                    <span className="idade">{dado.Idade}</span>
+                <span className="nome">Nome</span>
+                <span className="idade">Idade</span>
+                <span className='icones'></span>
+            </div>
+
+            {dadosGerais.map((dadoFuncionario, index) => (
+                <div key={index} className={index % 2 === 0 ? 'linha par' : 'linha impar'} >
+                    <span className="nome">{dadoFuncionario.Nome}</span>
+                    <span className="idade">{dadoFuncionario.Idade}</span>
                     <span className="icones">
-                        <ion-icon name="create-outline" onClick={()=>editaElemento(index)}></ion-icon>
-                        <ion-icon name="trash-outline" onClick={()=>apagarElemento(index)}></ion-icon>
+                        <ion-icon name="create-outline" onClick={()=>editarEsteFuncionario(index)}></ion-icon>
+                        <ion-icon name="trash-outline" onClick={()=>apagarEsteFuncionario(index)}></ion-icon>
                     </span>
                 </div>
             ))}
 
-            <button onClick={cadastrar}>NOVO</button>            
+            <button onClick={cadastrarNovoFuncionario}>NOVO</button>            
         </div>
     )
 }

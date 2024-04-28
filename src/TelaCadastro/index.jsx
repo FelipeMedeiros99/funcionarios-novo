@@ -1,115 +1,128 @@
 import { useState, useEffect } from 'react'
 
-import InformacoesEndereco from './InformacoesEndereco'
 import InformacoesPessoais from './InformacoesPessoais'
-import EditarEndereco from './EditarEndereco'
+import InformacoesEndereco from './InformacoesEndereco'
+// import EditarEndereco from './EditarEndereco'
 
 import './index.css'
 
 
-const modeloEndereco = { Identificador: '', Numero: '', Logradouro: '', Complemento: '', Cidade: '', Estado: '', Bairro: '' }
-
 const TelaCadastro = (props) => {
-
+    
     const { 
-            informacoesPessoais,
-            setInformacoesPessoais,
-
-            informacoesEnderecoInput,
-            setInformacoesEnderecoInput,
-            
-            setTelaCadastroAtiva,
-            indice,
-            dados,
-            setDados,
-            telaAtiva,
+            ativadorDaTelaDeCadastro,
+            inputsInformacoesPessoais,
+            setInputsInformacoesPessoais,
+            inputsDeEndereco,
+            setInputsDeEndereco,
+            indiceDoFuncionarioASerEditado,
+            dadosGerais,
+            setDadosGerais,
+            // componentesDeAtivacao,
+            // setComponentesDeAtivacao,
+            // setAtivadorDaTelaCadastro,
         } = props
 
 
-    const [adicionarNovoEndereco, setAdicionarNovoEndereco] = useState(false)
-    const [componentesDeAtivacao, setComponentesDeAtivacao] = useState({indice:null, visibilidade:false, endereco:''})
-    const adicionarEndereco = () => {   
-        // setInformacoesEnderecoInput([...informacoesEnderecoInput, modeloEndereco])
-        setAdicionarNovoEndereco(true)
-        let copia = {...componentesDeAtivacao}
-        copia.indice = null
-        setComponentesDeAtivacao({...copia})
-    }
-
-    const editaDadosPessoais = (elemento) => {
-        let nome = elemento.target.name
-        let valor = elemento.target.value
-        let copiaInformacoesPessoais = { ...informacoesPessoais }
-        copiaInformacoesPessoais[nome] = valor
-        setInformacoesPessoais({ ...copiaInformacoesPessoais })
+    // const [adicionarNovoEndereco, setAdicionarNovoEndereco] = useState(false)
+        
+    
+    const editarInput = (evento, nomeDoComponente) => {
+        let valor = evento.target.value
+        let copiaInputsInformacoesPessoais = { ...inputsInformacoesPessoais }
+        copiaInputsInformacoesPessoais[nomeDoComponente] = valor
+        setInputsInformacoesPessoais({ ...copiaInputsInformacoesPessoais })
     }
 
 
-    const salvarObjeto = () => {
-        let copiaInformacoes = { ...informacoesPessoais }
-        copiaInformacoes.Endereco = [...informacoesEnderecoInput]
-        let copiaDados = [...dados]
-        if (indice === null) {
-            copiaDados.push(copiaInformacoes)
-        } else {
-            copiaDados[indice] = copiaInformacoes
-        }
-        setDados([...copiaDados])
-        setTelaCadastroAtiva(false)
-    }
-
-    const fecharTela = () => {
-        setTelaCadastroAtiva(false)
-    }
+    // const editarInput = (evento) => {
+    //     let nome = evento.target.name
+    //     let valor = evento.target.value
+    //     let copiaInputsInformacoesPessoais = { ...inputsInformacoesPessoais }
+        
+    //     copiaInputsInformacoesPessoais[nome] = valor
+    //     setInputsInformacoesPessoais({ ...copiaInputsInformacoesPessoais })
+    // }
 
 
+    // const adicionarEndereco = () => {   
+    //     // setInputsDeEndereco([...inputsDeEndereco, modeloEndereco])
+    //     setAdicionarNovoEndereco(true)
+    //     let copia = {...componentesDeAtivacao}
+    //     copia.indiceDoFuncionarioASerEditado = null
+    //     setComponentesDeAtivacao({...copia})
+    // }
 
-    useEffect(() => {
-        if (indice === null) {
-            setInformacoesEnderecoInput([{ ...modeloEndereco }])
-            setInformacoesPessoais({ Nome: '', Idade: '', Endereco: '' })
-        } else {
-            setInformacoesEnderecoInput([...dados[indice].Endereco])
-            setInformacoesPessoais({ ...dados[indice], Endereco: '' })
-        }
-    }, [indice])
+
+
+    // const salvarObjeto = () => {
+    //     let copiaInformacoes = { ...inputsInformacoesPessoais }
+    //     copiaInformacoes.Endereco = [...inputsDeEndereco]
+    //     let copiaDados = [...dados]
+    //     if (indiceDoFuncionarioASerEditado === null) {
+    //         copiaDados.push(copiaInformacoes)
+    //     } else {
+    //         copiaDados[indiceDoFuncionarioASerEditado] = copiaInformacoes
+    //     }
+    //     setDados([...copiaDados])
+    //     setAtivadorDaTelaCadastro(false)
+    // }
+
+    // const fecharTela = () => {
+    //     setAtivadorDaTelaCadastro(false)
+    // }
+
+
+
+    // useEffect(() => {
+    //     if (indiceDoFuncionarioASerEditado === null) {
+    //         setInputsDeEndereco([{ ...modeloEndereco }])
+    //         setInputsInformacoesPessoais({ Nome: '', Idade: '', Endereco: '' })
+    //     } else {
+    //         setInputsDeEndereco([...dados[indiceDoFuncionarioASerEditado].Endereco])
+    //         setInputsInformacoesPessoais({ ...dados[indiceDoFuncionarioASerEditado], Endereco: '' })
+    //     }
+    // }, [indiceDoFuncionarioASerEditado])
 
 
     return (
-        telaAtiva ? (
+        ativadorDaTelaDeCadastro ? (
             <div className="container-tela-cadastro">
                 <div className="tela-cadastro">
                     <div className='dados-pessoais'>
                         <h2>DADOS</h2>
                         <InformacoesPessoais
-                            informacoesPessoais={informacoesPessoais}
-                            editaDadosPessoais={editaDadosPessoais} />
+                            inputsInformacoesPessoais={inputsInformacoesPessoais}
+                            editarInput={editarInput} 
+                        />
                     </div>
 
                     <div className='endereco'>
                         <h2>ENDEREÇO</h2>
                         <InformacoesEndereco
-                            informacoesEnderecoInput={informacoesEnderecoInput}
-                            setInformacoesEnderecoInput={setInformacoesEnderecoInput}
-                            adicionarNovoEndereco={adicionarNovoEndereco}
-                            setAdicionarNovoEndereco={setAdicionarNovoEndereco}
-                            setComponentesDeAtivacao={setComponentesDeAtivacao}
+                            editarInput={editarInput}
+                            inputsDeEndereco={inputsDeEndereco}
+                            setInputsDeEndereco={setInputsDeEndereco}
+                            // adicionarNovoEndereco={adicionarNovoEndereco}
+                            // setAdicionarNovoEndereco={setAdicionarNovoEndereco}
+                            // setComponentesDeAtivacao={setComponentesDeAtivacao}
                         />
-                        <div className="botoes">
+
+                        {/* <div className="botoes">
                             <button onClick={adicionarEndereco}>Adicionar</button>
                             <button onClick={salvarObjeto}>Salvar</button>
                             <button onClick={fecharTela}>cancelar</button>
-                        </div>
+                        </div> */}
 
 
-                        <EditarEndereco
-                            informacoesEnderecoInput={informacoesEnderecoInput}
-                            setInformacoesEnderecoInput={setInformacoesEnderecoInput}
+                        {/* <EditarEndereco
+                            inputsDeEndereco={inputsDeEndereco}
+                            setInputsDeEndereco={setInputsDeEndereco}
                             componentesDeAtivacao={componentesDeAtivacao}
                             setComponentesDeAtivacao={setComponentesDeAtivacao}
                             setAdicionarNovoEndereco={setAdicionarNovoEndereco}
                             adicionarNovoEndereco={adicionarNovoEndereco}
-                        />
+                        /> */}
 
                     </div>
                 </div>
