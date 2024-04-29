@@ -1,33 +1,45 @@
+import { useEffect, useState } from "react"
+
 const InformacoesPessoais = (props) => {
 
     const {
         inputsInformacoesPessoais,
         setInputsInformacoesPessoais,
-        editarInput,
         dadosGerais,
-        indiceDoFuncionarioASerEditado
+        indiceDoFuncionarioASerEditado,
     } = props
 
     const listaDosElementosQueSeraoExibidos = ['Nome', 'Idade']
-    // console.log(dadosGerais[indiceDoFuncionarioASerEditado])
-    setInputsInformacoesPessoais(dadosGerais[indiceDoFuncionarioASerEditado])
-    // console.log(indiceDoFuncionarioASerEditado)
-    // console.log(inputsInformacoesPessoais)
-    
+
+    const editarInputsDeDadosPessoais = (evento, nomeDoComponente) => {
+        let valor = evento.target.value
+        let copiaDeDadosInputs = { ...inputsInformacoesPessoais }
+        copiaDeDadosInputs[nomeDoComponente] = valor
+        setInputsInformacoesPessoais({ ...copiaDeDadosInputs })
+    }
+
+
+    useEffect(()=>{
+        console.log(indiceDoFuncionarioASerEditado)
+        indiceDoFuncionarioASerEditado===null?
+        setInputsInformacoesPessoais({Nome:'', Idade:'', Endereco:[]}):
+        setInputsInformacoesPessoais(dadosGerais[indiceDoFuncionarioASerEditado])
+    }, [])
+
     return (
         <>
             {listaDosElementosQueSeraoExibidos.map((nomeDoComponente, index) => (
                 <div key={index} className="linha">
-                    {console.log(inputsInformacoesPessoais)}
                     <p>{nomeDoComponente}:</p>
                     <input
                         type="text"
                         name={nomeDoComponente}
-                        onChange={(evento)=>editarInput(evento, nomeDoComponente)}
-                        value={inputsInformacoesPessoais.nomeDoComponente} 
+                        onChange={(evento)=>editarInputsDeDadosPessoais(evento, nomeDoComponente)}
+                        value={inputsInformacoesPessoais[nomeDoComponente]} 
                         />
                 </div>
             ))}
+
         </>
     )
 }

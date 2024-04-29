@@ -11,6 +11,7 @@ const TelaCadastro = (props) => {
     
     const { 
             ativadorDaTelaDeCadastro,
+            setAtivadorDaTelaDeCadastro,
             inputsInformacoesPessoais,
             setInputsInformacoesPessoais,
             inputsDeEndereco,
@@ -21,22 +22,30 @@ const TelaCadastro = (props) => {
             modeloEndereco,
             // componentesDeAtivacao,
             // setComponentesDeAtivacao,
-            // setAtivadorDaTelaCadastro,
         } = props
 
 
-    // const [adicionarNovoEndereco, setAdicionarNovoEndereco] = useState(false)
+    const salvarInputsInformacoesPessoais = () =>{
+        const copiaDadosGerais = [...dadosGerais]
         
-    
-    const editarInput = (evento, nomeDoComponente) => {
-        let valor = evento.target.value
-        let copiaInputsInformacoesPessoais = { ...inputsInformacoesPessoais }
-        copiaInputsInformacoesPessoais[nomeDoComponente] = valor
-        setInputsInformacoesPessoais({ ...copiaInputsInformacoesPessoais })
+        indiceDoFuncionarioASerEditado===null?
+        copiaDadosGerais.push(inputsInformacoesPessoais):
+        copiaDadosGerais[indiceDoFuncionarioASerEditado] = inputsInformacoesPessoais
+        
+        console.log(copiaDadosGerais)
+        setDadosGerais([...copiaDadosGerais])
+        fecharTelaDeCadastro()
     }
 
+    const fecharTelaDeCadastro = () =>{
+        setAtivadorDaTelaDeCadastro(false)
+    }
 
-    // const editarInput = (evento) => {
+    
+    // const [adicionarNovoEndereco, setAdicionarNovoEndereco] = useState(false)
+
+
+    // const editarInputsDeDadosPessoas = (evento) => {
     //     let nome = evento.target.name
     //     let valor = evento.target.value
     //     let copiaInputsInformacoesPessoais = { ...inputsInformacoesPessoais }
@@ -66,11 +75,10 @@ const TelaCadastro = (props) => {
     //         copiaDados[indiceDoFuncionarioASerEditado] = copiaInformacoes
     //     }
     //     setDados([...copiaDados])
-    //     setAtivadorDaTelaCadastro(false)
+    //     setAtivadorDaTelaDeCadastro(false)
     // }
-
     // const fecharTela = () => {
-    //     setAtivadorDaTelaCadastro(false)
+    //     setAtivadorDaTelaDeCadastro(false)
     // }
 
 
@@ -95,16 +103,15 @@ const TelaCadastro = (props) => {
                         <InformacoesPessoais
                             inputsInformacoesPessoais={inputsInformacoesPessoais}
                             setInputsInformacoesPessoais={setInputsInformacoesPessoais}
-                            editarInput={editarInput} 
                             dadosGerais={dadosGerais}
                             indiceDoFuncionarioASerEditado={indiceDoFuncionarioASerEditado}
+                            modeloEndereco={modeloEndereco}
                         />
                     </div>
 
                     <div className='endereco'>
                         <h2>ENDEREÇO</h2>
                         <InformacoesEndereco
-                            editarInput={editarInput}
                             inputsDeEndereco={inputsDeEndereco}
                             setInputsDeEndereco={setInputsDeEndereco}
                             indiceDoFuncionarioASerEditado={indiceDoFuncionarioASerEditado}
@@ -112,11 +119,11 @@ const TelaCadastro = (props) => {
                             modeloEndereco={modeloEndereco}
                         />
 
-                        {/* <div className="botoes">
-                            <button onClick={adicionarEndereco}>Adicionar</button>
-                            <button onClick={salvarObjeto}>Salvar</button>
-                            <button onClick={fecharTela}>cancelar</button>
-                        </div> */}
+                        <div className="botoes">
+                            {/* <button onClick={adicionarEndereco}>Adicionar</button> */}
+                            <button onClick={salvarInputsInformacoesPessoais}>Salvar</button>
+                            <button onClick={fecharTelaDeCadastro}>cancelar</button>
+                        </div>
 
 
                         {/* <EditarEndereco

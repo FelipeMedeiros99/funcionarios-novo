@@ -36,6 +36,7 @@ const App = () =>{
 
       <TelaCadastro 
         ativadorDaTelaDeCadastro={ativadorDaTelaDeCadastro}
+        setAtivadorDaTelaDeCadastro={setAtivadorDaTelaDeCadastro}
         inputsInformacoesPessoais={inputsInformacoesPessoais}
         setInputsInformacoesPessoais={setInputsInformacoesPessoais}
         inputsDeEndereco={inputsDeEndereco}
@@ -44,7 +45,6 @@ const App = () =>{
         dadosGerais={dadosGerais} 
         setDadosGerais={setDadosGerais} 
         modeloEndereco={modeloEndereco}
-        // setAtivadorDaTelaDeCadastro={setAtivadorDaTelaDeCadastro}
         // componentesDeAtivacao={componentesDeAtivacao}
         // setComponentesDeAtivacao={setComponentesDeAtivacao}
       />

@@ -31,6 +31,7 @@ const Tabela = (props) => {
 
     const cadastrarNovoFuncionario = () =>{
         setAtivadorDaTelaDeCadastro(true)
+        setIndiceDoFuncionarioASerEditado(null)
         // setInputsDeEndereco([{...modeloEndereco}])
         // setInputsInformacoesPessoais({Nome:'', Idade:'', Endereco:''})
 
