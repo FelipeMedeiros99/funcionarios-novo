@@ -32,7 +32,6 @@ const TelaCadastro = (props) => {
         copiaDadosGerais.push(inputsInformacoesPessoais):
         copiaDadosGerais[indiceDoFuncionarioASerEditado] = inputsInformacoesPessoais
         
-        console.log(copiaDadosGerais)
         setDadosGerais([...copiaDadosGerais])
         fecharTelaDeCadastro()
     }

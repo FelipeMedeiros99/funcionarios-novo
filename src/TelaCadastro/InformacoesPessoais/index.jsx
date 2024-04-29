@@ -20,12 +20,11 @@ const InformacoesPessoais = (props) => {
 
 
     useEffect(()=>{
-        console.log(indiceDoFuncionarioASerEditado)
         indiceDoFuncionarioASerEditado===null?
         setInputsInformacoesPessoais({Nome:'', Idade:'', Endereco:[]}):
         setInputsInformacoesPessoais(dadosGerais[indiceDoFuncionarioASerEditado])
     }, [])
-
+    
     return (
         <>
             {listaDosElementosQueSeraoExibidos.map((nomeDoComponente, index) => (

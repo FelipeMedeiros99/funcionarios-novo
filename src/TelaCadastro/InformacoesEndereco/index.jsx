@@ -14,15 +14,15 @@ value={inputsDeEndereco[index].elemento}
 
 const InformacoesEndereco = (props) => {
     const { 
-            editarInput,
-            inputsDeEndereco, 
-            setInputsDeEndereco, 
-            indiceDoFuncionarioASerEditado,
-            dadosGerais,
-            modeloEndereco,
-            // adicionarNovoEndereco, 
-            // setAdicionarNovoEndereco, 
-            // setComponentesDeAtivacao,
+        indiceDoFuncionarioASerEditado,
+        dadosGerais,
+        modeloEndereco,
+        // editarInput,
+        // inputsDeEndereco, 
+        // setInputsDeEndereco, 
+        // adicionarNovoEndereco, 
+        // setAdicionarNovoEndereco, 
+        // setComponentesDeAtivacao,
         } = props
 
 
