@@ -31,6 +31,7 @@ const TelaCadastro = (props) => {
         indiceDoFuncionarioASerEditado===null?
         copiaDadosGerais.push(inputsInformacoesPessoais):
         copiaDadosGerais[indiceDoFuncionarioASerEditado] = inputsInformacoesPessoais
+        copiaDadosGerais[indiceDoFuncionarioASerEditado].Endereco = inputsDeEndereco
         
         setDadosGerais([...copiaDadosGerais])
         fecharTelaDeCadastro()
