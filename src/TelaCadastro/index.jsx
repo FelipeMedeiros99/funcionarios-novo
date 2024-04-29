@@ -18,6 +18,7 @@ const TelaCadastro = (props) => {
             indiceDoFuncionarioASerEditado,
             dadosGerais,
             setDadosGerais,
+            modeloEndereco,
             // componentesDeAtivacao,
             // setComponentesDeAtivacao,
             // setAtivadorDaTelaCadastro,
@@ -93,7 +94,10 @@ const TelaCadastro = (props) => {
                         <h2>DADOS</h2>
                         <InformacoesPessoais
                             inputsInformacoesPessoais={inputsInformacoesPessoais}
+                            setInputsInformacoesPessoais={setInputsInformacoesPessoais}
                             editarInput={editarInput} 
+                            dadosGerais={dadosGerais}
+                            indiceDoFuncionarioASerEditado={indiceDoFuncionarioASerEditado}
                         />
                     </div>
 
@@ -103,9 +107,9 @@ const TelaCadastro = (props) => {
                             editarInput={editarInput}
                             inputsDeEndereco={inputsDeEndereco}
                             setInputsDeEndereco={setInputsDeEndereco}
-                            // adicionarNovoEndereco={adicionarNovoEndereco}
-                            // setAdicionarNovoEndereco={setAdicionarNovoEndereco}
-                            // setComponentesDeAtivacao={setComponentesDeAtivacao}
+                            indiceDoFuncionarioASerEditado={indiceDoFuncionarioASerEditado}
+                            dadosGerais={dadosGerais}
+                            modeloEndereco={modeloEndereco}
                         />
 
                         {/* <div className="botoes">

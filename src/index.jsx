@@ -41,8 +41,9 @@ const App = () =>{
         inputsDeEndereco={inputsDeEndereco}
         setInputsDeEndereco={setInputsDeEndereco}
         indiceDoFuncionarioASerEditado={indiceDoFuncionarioASerEditado} 
-        // dadosGerais={dadosGerais} 
-        // setDadosGerais={setDadosGerais} 
+        dadosGerais={dadosGerais} 
+        setDadosGerais={setDadosGerais} 
+        modeloEndereco={modeloEndereco}
         // setAtivadorDaTelaDeCadastro={setAtivadorDaTelaDeCadastro}
         // componentesDeAtivacao={componentesDeAtivacao}
         // setComponentesDeAtivacao={setComponentesDeAtivacao}
