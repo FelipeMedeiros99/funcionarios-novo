@@ -77,14 +77,14 @@ const InformacoesEndereco = (props) => {
             ))}
             <button onClick={adicionarEndereco}><ion-icon name="add-circle-outline"></ion-icon></button>
         
-            <div className="container-tela-de-endereco">
-                <EditarEndereco 
-                    setAtivadorDaTelaDeEditarEndereco={setAtivadorDaTelaDeEditarEndereco}
-                    ativadorDaTelaDeEditarEndereco={ativadorDaTelaDeEditarEndereco}
-                    inputsDeEndereco={inputsDeEndereco}
-                    setInputsDeEndereco={setInputsDeEndereco}
-                />
-            </div>
+            
+            <EditarEndereco 
+                setAtivadorDaTelaDeEditarEndereco={setAtivadorDaTelaDeEditarEndereco}
+                ativadorDaTelaDeEditarEndereco={ativadorDaTelaDeEditarEndereco}
+                inputsDeEndereco={inputsDeEndereco}
+                setInputsDeEndereco={setInputsDeEndereco}
+            />
+
         </div>
     )
 }
