@@ -18,7 +18,6 @@ const InformacoesEndereco = (props) => {
         inputsDeEndereco,
         setInputsDeEndereco,
         // editarInput,
-        // inputsDeEndereco, 
         // setInputsDeEndereco, 
         // adicionarNovoEndereco, 
         // setAdicionarNovoEndereco, 
@@ -31,8 +30,8 @@ const InformacoesEndereco = (props) => {
         
     useEffect(()=>{
         setInputsDeEndereco(indiceDoFuncionarioASerEditado===null?
-            [modeloEndereco]:
-            dadosGerais[indiceDoFuncionarioASerEditado].Endereco)
+                            [modeloEndereco]:
+                            dadosGerais[indiceDoFuncionarioASerEditado].Endereco)
     }, [])
 
     
@@ -76,12 +75,16 @@ const InformacoesEndereco = (props) => {
                 </div>
             
             ))}
-        <button onClick={adicionarEndereco}><ion-icon name="add-circle-outline"></ion-icon></button>
-
-        <EditarEndereco 
-            setAtivadorDaTelaDeEditarEndereco={setAtivadorDaTelaDeEditarEndereco}
-            ativadorDaTelaDeEditarEndereco={ativadorDaTelaDeEditarEndereco}
-        />
+            <button onClick={adicionarEndereco}><ion-icon name="add-circle-outline"></ion-icon></button>
+        
+            <div className="container-tela-de-endereco">
+                <EditarEndereco 
+                    setAtivadorDaTelaDeEditarEndereco={setAtivadorDaTelaDeEditarEndereco}
+                    ativadorDaTelaDeEditarEndereco={ativadorDaTelaDeEditarEndereco}
+                    inputsDeEndereco={inputsDeEndereco}
+                    setInputsDeEndereco={setInputsDeEndereco}
+                />
+            </div>
         </div>
     )
 }

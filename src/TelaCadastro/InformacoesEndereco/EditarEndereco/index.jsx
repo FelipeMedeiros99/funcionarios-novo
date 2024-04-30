@@ -1,14 +1,17 @@
+import './index.css'
+
 const EditarEndereco = (props) => {
     const { 
         setAtivadorDaTelaDeEditarEndereco,
-        ativadorDaTelaDeEditarEndereco
+        ativadorDaTelaDeEditarEndereco,
+        inputsDeEndereco,
+        setInputsDeEndereco,
         } = props
-        
-        console.log(props)
-        
+               
         const {telaAtiva, indiceDoEndereco, endereco} = ativadorDaTelaDeEditarEndereco
+        
         const chaves = Object.keys(endereco)
-        console.log(chaves)
+        console.log('props: ', props)
 
 
 
@@ -52,21 +55,20 @@ const EditarEndereco = (props) => {
     return (
         telaAtiva?(
             <div className="tela-de-endereco">
-                {chaves.map((chave) => (
-                    <div className = "linha" >
-                            <p>{chave}:</p>
-                            <input type="text" 
-                                    value={endereco[indice][chave]} 
-                                    name={chave}
-                                    onChange={(elemento) => {
-                                        const nome = elemento.target.name
-                                        const valor = elemento.target.value
-                                        let copiaEndereco = [...informacoesEnderecoInput]
-                                        copiaEndereco[indice][nome] = valor
-                                        setInformacoesEnderecoInput([...copiaEndereco]) 
-                                    }}  
-                            />
-
+                <h2>EDITAR ENDEREÇO</h2>
+                {chaves.map((chave, index) => (
+                    <div key={index} className = "linha" >
+                        <p>{chave}:</p>
+                        <input  type="text" 
+                                value={inputsDeEndereco[indiceDoEndereco][chave]} 
+                                name={chave}
+                                onChange={(elemento) => {
+                                    const valor = elemento.target.value
+                                    let copiaEndereco = [...inputsDeEndereco]
+                                    copiaEndereco[indiceDoEndereco][chave] = valor
+                                    setInputsDeEndereco([...copiaEndereco]) 
+                                }}  
+                        />
                     </div >
                 ))}
 
@@ -75,6 +77,7 @@ const EditarEndereco = (props) => {
                     <button onClick={cancelar}>cancelar</button>
                     <button onClick={()=>mostrar(indice)}>mostrar</button>
                 </div> */}
+                <button>OK</button>
     
             </div>
         ):(<></>)
