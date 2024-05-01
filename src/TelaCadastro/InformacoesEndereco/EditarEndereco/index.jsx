@@ -14,10 +14,9 @@ const EditarEndereco = (props) => {
         modeloEndereco,
         } = props       
     const {telaAtiva, indiceDoEndereco, endereco} = ativadorDaTelaDeEditarEndereco
-    const copiaDadosIniciaisDoFuncionario = JSON.parse(JSON.stringify({...dadosGerais[indiceDoFuncionarioASerEditado]}))
-    const chaves = Object.keys(endereco)
+    const [copiaDadosIniciaisDoFuncionario, setCopiaDosDadosIniciais] = useState(JSON.parse(JSON.stringify({...dadosGerais[indiceDoFuncionarioASerEditado]})))
+    const chaves = Object.keys(modeloEndereco)
 
-    // console.log(inputsDeEndereco)
 
     const fecharTelaDeInformacoesDeEndereco = () =>{
         setAtivadorDaTelaDeEditarEndereco({telaAtiva:false, indiceDoEndereco:null, endereco:[]})
@@ -31,7 +30,9 @@ const EditarEndereco = (props) => {
             fecharTelaDeInformacoesDeEndereco()
 
         }else{
-            setInputsDeEndereco([...copiaDadosIniciaisDoFuncionario.Endereco])
+            const copia = [...inputsDeEndereco]
+            copia.splice(copia.length-1, 1)
+            setInputsDeEndereco([...copia])
             fecharTelaDeInformacoesDeEndereco()
 
         }
@@ -39,6 +40,7 @@ const EditarEndereco = (props) => {
 
     
     const salvarInformacoesDeEndereco = () =>{
+        setCopiaDosDadosIniciais(JSON.parse(JSON.stringify(inputsDeEndereco)))
         fecharTelaDeInformacoesDeEndereco()
     }
 
@@ -49,42 +51,6 @@ const EditarEndereco = (props) => {
         copiaEndereco[indiceDoEndereco][chave] = valor
         setInputsDeEndereco([...copiaEndereco])
     } 
-
-
-    // const {indice, visibilidade, endereco} = componentesDeAtivacao
-    
-    // console.log(informacoesEnderecoInput)
-    // console.log(indice)
-    
-
-    // const salvar = () =>{
-    //     let copia = {...componentesDeAtivacao}
-    //     copia.visibilidade=false
-    //     setComponentesDeAtivacao({...copia})
-
-    //     let copiaEndereco = [...informacoesEnderecoInput]
-    //     setInformacoesEnderecoInput([...copiaEndereco])
-    
-    // }
-
-
-    // const cancelar = ()=>{
-    //     let copia = {...componentesDeAtivacao}
-    //     copia.visibilidade=false
-    //     setComponentesDeAtivacao({...copia})
-
-    //     if(adicionarNovoEndereco){
-    //         let copiaEndereco = [...informacoesEnderecoInput]
-    //         copiaEndereco.pop()
-    //         setInformacoesEnderecoInput([...copiaEndereco])
-    //     }
-
-    // }
-    
-    // const mostrar = (elemento) => {
-    //     console.log(elemento)
-        
-    // }
 
 
     return (

@@ -17,8 +17,6 @@ const App = () =>{
   const [ativadorDaTelaDeCadastro, setAtivadorDaTelaDeCadastro] = useState(false)
   const [inputsDeEndereco, setInputsDeEndereco] = useState([])
   const [inputsInformacoesPessoais, setInputsInformacoesPessoais] = useState({})
-  // const [componentesDeAtivacao, setComponentesDeAtivacao] = useState({indiceDoFuncionarioASerEditado:null, visibilidade:false,   endereco:''})  
-  
   
   return ( 
     <>
@@ -27,10 +25,7 @@ const App = () =>{
         setDadosGerais={setDadosGerais} 
         setIndiceDoFuncionarioASerEditado={setIndiceDoFuncionarioASerEditado}
         setAtivadorDaTelaDeCadastro={setAtivadorDaTelaDeCadastro}
-        // setInputsDeEndereco={setInputsDeEndereco}
-        // setInputsInformacoesPessoais={setInputsInformacoesPessoais}
-        // setComponentesDeAtivacao={setComponentesDeAtivacao}
-        // componentesDeAtivacao={componentesDeAtivacao}
+       
       /> 
 
       <TelaCadastro 
@@ -44,8 +39,6 @@ const App = () =>{
         dadosGerais={dadosGerais} 
         setDadosGerais={setDadosGerais} 
         modeloEndereco={modeloEndereco}
-        // componentesDeAtivacao={componentesDeAtivacao}
-        // setComponentesDeAtivacao={setComponentesDeAtivacao}
       />
 
     </>

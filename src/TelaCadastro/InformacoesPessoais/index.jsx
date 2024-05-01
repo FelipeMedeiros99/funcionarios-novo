@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 const InformacoesPessoais = (props) => {
 
@@ -8,10 +8,6 @@ const InformacoesPessoais = (props) => {
         dadosGerais,
         indiceDoFuncionarioASerEditado,
     } = props
-
-    // console.log('dados gerais: ', dadosGerais[indiceDoFuncionarioASerEditado])
-    // console.log('inputs de informacoes pessoais: ', inputsInformacoesPessoais)
-
 
     const listaDosElementosQueSeraoExibidos = ['Nome', 'Idade']
 

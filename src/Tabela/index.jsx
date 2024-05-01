@@ -9,10 +9,6 @@ const Tabela = (props) => {
         setDadosGerais, 
         setIndiceDoFuncionarioASerEditado, 
         setAtivadorDaTelaDeCadastro, 
-        // setInputsDeEndereco, 
-        // setInputsInformacoesPessoais,
-        // setComponentesDeAtivacao,
-        // componentesDeAtivacao
     } = props
 
 
@@ -32,14 +28,6 @@ const Tabela = (props) => {
     const cadastrarNovoFuncionario = () =>{
         setAtivadorDaTelaDeCadastro(true)
         setIndiceDoFuncionarioASerEditado(null)
-        // setInputsDeEndereco([{...modeloEndereco}])
-        // setInputsInformacoesPessoais({Nome:'', Idade:'', Endereco:''})
-
-        // setIndiceDoFuncionarioASerEditado(null)
-        // setAtivadorDaTelaDeCadastro(true)
-        // let copia = {...componentesDeAtivacao}
-        // copia.visibilidade=true
-        // setComponentesDeAtivacao({...copia})
     }
 
     return (
