@@ -9,6 +9,10 @@ const InformacoesPessoais = (props) => {
         indiceDoFuncionarioASerEditado,
     } = props
 
+    // console.log('dados gerais: ', dadosGerais[indiceDoFuncionarioASerEditado])
+    // console.log('inputs de informacoes pessoais: ', inputsInformacoesPessoais)
+
+
     const listaDosElementosQueSeraoExibidos = ['Nome', 'Idade']
 
     const editarInputsDeDadosPessoais = (evento, nomeDoComponente) => {
@@ -20,9 +24,12 @@ const InformacoesPessoais = (props) => {
 
 
     useEffect(()=>{
-        indiceDoFuncionarioASerEditado===null?
-        setInputsInformacoesPessoais({Nome:'', Idade:'', Endereco:[]}):
-        setInputsInformacoesPessoais(dadosGerais[indiceDoFuncionarioASerEditado])
+        if (indiceDoFuncionarioASerEditado===null){
+            setInputsInformacoesPessoais({Nome:'', Idade:'', Endereco:[]})
+        }else{
+            setInputsInformacoesPessoais({...dadosGerais[indiceDoFuncionarioASerEditado]})
+        }
+
     }, [])
     
     return (
@@ -32,12 +39,12 @@ const InformacoesPessoais = (props) => {
                     <p>{nomeDoComponente}:</p>
                     <input
                         type="text"
-                        name={nomeDoComponente}
                         onChange={(evento)=>editarInputsDeDadosPessoais(evento, nomeDoComponente)}
                         value={inputsInformacoesPessoais[nomeDoComponente]} 
                         />
                 </div>
             ))}
+
 
         </>
     )

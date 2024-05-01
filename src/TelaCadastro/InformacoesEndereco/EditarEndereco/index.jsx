@@ -1,38 +1,49 @@
 import { useEffect, useState } from 'react'
 import './index.css'
 
+
+
 const EditarEndereco = (props) => {
     const { 
+        dadosGerais,
         setAtivadorDaTelaDeEditarEndereco,
         ativadorDaTelaDeEditarEndereco,
         inputsDeEndereco,
         setInputsDeEndereco,
+        indiceDoFuncionarioASerEditado
         } = props       
     const {telaAtiva, indiceDoEndereco, endereco} = ativadorDaTelaDeEditarEndereco
     
     const chaves = Object.keys(endereco)
-    // console.log('props: ', props)
-
-    const [inputsTemporariosDeEndereco, setInputsTemporariosDeEndereco] = useState([])
-    
-    useEffect(()=>{
-        setInputsTemporariosDeEndereco([...inputsDeEndereco])
-    }, [inputsDeEndereco, ativadorDaTelaDeEditarEndereco])
 
 
-    console.log('input de endereco: ', inputsDeEndereco)
-    console.log('input temporario: ', inputsTemporariosDeEndereco)
+
 
     const fecharTelaDeInformacoesDeEndereco = () =>{
         setAtivadorDaTelaDeEditarEndereco({telaAtiva:false, indiceDoEndereco:null, endereco:[]})
-        setInputsTemporariosDeEndereco([])
     }
 
-    const salvarInformacoesDeEndereco = () =>{
-        console.log('estou salvando')
-        setInputsDeEndereco([...inputsTemporariosDeEndereco])
+
+    const cancelar = () =>{
+        let copiaDadosIniciaisDoFuncionario = JSON.parse(JSON.stringify({...dadosGerais[indiceDoFuncionarioASerEditado]}))
+        // let copiaDadosIniciaisDoFuncionario = {...dadosGerais[indiceDoEndereco]}
+        setInputsDeEndereco([...copiaDadosIniciaisDoFuncionario.Endereco])
         fecharTelaDeInformacoesDeEndereco()
     }
+
+    
+    const salvarInformacoesDeEndereco = () =>{
+        fecharTelaDeInformacoesDeEndereco()
+    }
+
+    
+    const editarInputDeEndereco = (elemento, chave) =>{
+        const valor = elemento.target.value
+        let copiaEndereco = [...inputsDeEndereco]
+        copiaEndereco[indiceDoEndereco][chave] = valor
+        setInputsDeEndereco([...copiaEndereco])
+    } 
+
 
     // const {indice, visibilidade, endereco} = componentesDeAtivacao
     
@@ -79,26 +90,17 @@ const EditarEndereco = (props) => {
                         <div key={index} className = "linha" >
                             <p>{chave}:</p>
                             <input  type="text" 
-                                    value={inputsTemporariosDeEndereco[indiceDoEndereco][chave]} 
+                                    value={inputsDeEndereco[indiceDoEndereco][chave]} 
                                     name={chave}
-                                    onChange={(elemento) => {
-                                        const valor = elemento.target.value
-                                        let copiaEndereco = [...inputsTemporariosDeEndereco]
-                                        copiaEndereco[indiceDoEndereco][chave] = valor
-                                        setInputsTemporariosDeEndereco([...copiaEndereco]) 
-                                    }}  
+                                    onChange={(elemento) => editarInputDeEndereco(elemento, chave)}  
                             />
                         </div >
                     ))}
 
-                    {/* <div className="botoes">
-                        <button onClick={salvar}>Salvar</button>
-                        <button onClick={cancelar}>cancelar</button>
-                        <button onClick={()=>mostrar(indice)}>mostrar</button>
-                    </div> */}
+    
                     <div className="botoes">
                         <button onClick={salvarInformacoesDeEndereco}>SALVAR</button>
-                        <button onClick={fecharTelaDeInformacoesDeEndereco}>CANCELAR</button>
+                        <button onClick={cancelar}>CANCELAR</button>
                     </div>
         
                 </div>

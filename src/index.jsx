@@ -17,8 +17,11 @@ const App = () =>{
   const [ativadorDaTelaDeCadastro, setAtivadorDaTelaDeCadastro] = useState(false)
   const [inputsDeEndereco, setInputsDeEndereco] = useState([])
   const [inputsInformacoesPessoais, setInputsInformacoesPessoais] = useState({})
-  // const [componentesDeAtivacao, setComponentesDeAtivacao] = useState({indiceDoFuncionarioASerEditado:null, visibilidade:false, endereco:''})  
+  // const [componentesDeAtivacao, setComponentesDeAtivacao] = useState({indiceDoFuncionarioASerEditado:null, visibilidade:false,   endereco:''})  
   
+
+  console.log('inputs dados pessoais: ', inputsInformacoesPessoais)
+  console.log('inputs dados endereco: ', inputsDeEndereco)
 
   
   return ( 
@@ -28,8 +31,8 @@ const App = () =>{
         setDadosGerais={setDadosGerais} 
         setIndiceDoFuncionarioASerEditado={setIndiceDoFuncionarioASerEditado}
         setAtivadorDaTelaDeCadastro={setAtivadorDaTelaDeCadastro}
-        setInputsDeEndereco={setInputsDeEndereco}
-        setInputsInformacoesPessoais={setInputsInformacoesPessoais}
+        // setInputsDeEndereco={setInputsDeEndereco}
+        // setInputsInformacoesPessoais={setInputsInformacoesPessoais}
         // setComponentesDeAtivacao={setComponentesDeAtivacao}
         // componentesDeAtivacao={componentesDeAtivacao}
       /> 
