@@ -26,8 +26,8 @@ const InformacoesEndereco = (props) => {
 
 
         
-    const [ativadorDaTelaDeEditarEndereco, setAtivadorDaTelaDeEditarEndereco] = useState({telaAtiva:false, indiceDoEndereco:null, endereco:{}}) 
-        
+    const [ativadorDaTelaDeEditarEndereco, setAtivadorDaTelaDeEditarEndereco] = useState({telaAtiva:false, indiceDoEndereco:null, endereco:[]}) 
+     
     useEffect(()=>{
             if(indiceDoFuncionarioASerEditado===null){
                 setInputsDeEndereco([{...modeloEndereco}])
@@ -35,10 +35,9 @@ const InformacoesEndereco = (props) => {
                 const copiaEndereco = [JSON.parse(JSON.stringify(...dadosGerais[indiceDoFuncionarioASerEditado].Endereco))]
                 setInputsDeEndereco([...copiaEndereco])
             }
+
     }, [])
 
-    
- 
     
     const editarEndereco = (indiceDoEndereco, endereco) =>{
         setAtivadorDaTelaDeEditarEndereco({telaAtiva:true, indiceDoEndereco:indiceDoEndereco, endereco:endereco})
@@ -90,6 +89,7 @@ const InformacoesEndereco = (props) => {
                 inputsDeEndereco={inputsDeEndereco}
                 setInputsDeEndereco={setInputsDeEndereco}
                 dadosGerais={dadosGerais}
+                modeloEndereco={modeloEndereco}
             />
 
         </div>

@@ -19,10 +19,6 @@ const App = () =>{
   const [inputsInformacoesPessoais, setInputsInformacoesPessoais] = useState({})
   // const [componentesDeAtivacao, setComponentesDeAtivacao] = useState({indiceDoFuncionarioASerEditado:null, visibilidade:false,   endereco:''})  
   
-
-  console.log('inputs dados pessoais: ', inputsInformacoesPessoais)
-  console.log('inputs dados endereco: ', inputsDeEndereco)
-
   
   return ( 
     <>

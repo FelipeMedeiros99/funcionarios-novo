@@ -10,14 +10,14 @@ const EditarEndereco = (props) => {
         ativadorDaTelaDeEditarEndereco,
         inputsDeEndereco,
         setInputsDeEndereco,
-        indiceDoFuncionarioASerEditado
+        indiceDoFuncionarioASerEditado,
+        modeloEndereco,
         } = props       
     const {telaAtiva, indiceDoEndereco, endereco} = ativadorDaTelaDeEditarEndereco
-    
+    const copiaDadosIniciaisDoFuncionario = JSON.parse(JSON.stringify({...dadosGerais[indiceDoFuncionarioASerEditado]}))
     const chaves = Object.keys(endereco)
 
-
-
+    // console.log(inputsDeEndereco)
 
     const fecharTelaDeInformacoesDeEndereco = () =>{
         setAtivadorDaTelaDeEditarEndereco({telaAtiva:false, indiceDoEndereco:null, endereco:[]})
@@ -25,10 +25,16 @@ const EditarEndereco = (props) => {
 
 
     const cancelar = () =>{
-        let copiaDadosIniciaisDoFuncionario = JSON.parse(JSON.stringify({...dadosGerais[indiceDoFuncionarioASerEditado]}))
-        // let copiaDadosIniciaisDoFuncionario = {...dadosGerais[indiceDoEndereco]}
-        setInputsDeEndereco([...copiaDadosIniciaisDoFuncionario.Endereco])
-        fecharTelaDeInformacoesDeEndereco()
+        
+        if(indiceDoFuncionarioASerEditado===null){
+            setInputsDeEndereco([{...modeloEndereco}])
+            fecharTelaDeInformacoesDeEndereco()
+
+        }else{
+            setInputsDeEndereco([...copiaDadosIniciaisDoFuncionario.Endereco])
+            fecharTelaDeInformacoesDeEndereco()
+
+        }
     }
 
     
